@@ -52,6 +52,9 @@ def group_host_sensor_apps(applications):
             group_apps[agent_id].append(app)
     return group_apps
 
+def remove_duplicate_hosts(hosts):
+    """Remove any duplicate hosts from the array of hosts"""
+    return [i for n, i in enumerate(hosts) if i not in hosts[:n]]
 
 class DataHandler(BaseDataHandler):
 

@@ -2,7 +2,7 @@ import re
 
 from car_framework.context import context
 from car_framework.util import DatasourceFailure
-from connector.data_handler import epoch_to_datetime_conv, deep_get
+from connector.data_handler import epoch_to_datetime_conv, deep_get, remove_duplicate_hosts
 from falconpy import Discover
 from falconpy import SpotlightVulnerabilities
 
@@ -46,9 +46,11 @@ class AssetServer:
         try:
             discover = Discover(client_id=self.client_id, client_secret=self.client_secret, base_url=self.base_url)
             result_filter = ""
+            sort = "last_seen_timestamp|asc"
             if last_model_state_id:
                 result_filter = f"last_seen_timestamp:>'{epoch_to_datetime_conv(last_model_state_id)}'"
-            host_lookup = discover.query_hosts(filter=result_filter, limit=DISCOVER_PAGE_SIZE)
+            host_lookup = discover.query_hosts(filter=result_filter, limit=DISCOVER_PAGE_SIZE, sort=sort)
+            total_original = host_lookup['body']['meta']['pagination']['total']
             is_paged_result = True
             while is_paged_result:
                 if host_lookup["status_code"] == 200:
@@ -59,11 +61,27 @@ class AssetServer:
                     error_detail = host_lookup["body"]["errors"]
                     for err in error_detail:
                         raise DatasourceFailure(err["message"], err["code"])
-                if len(hosts) < host_lookup['body']['meta']['pagination']['total']:
-                    offset = len(hosts)
-                    host_lookup = discover.query_hosts(filter=result_filter, limit=DISCOVER_PAGE_SIZE, offset=offset)
+                hosts = remove_duplicate_hosts(hosts)    
+                if len(hosts) < total_original:
+                    if DISCOVER_PAGE_SIZE + len(hosts) > 10000:
+                        last_added = deep_get(hosts[-1], ['last_seen_timestamp'])
+                        last_added_filter = "last_seen_timestamp:>='" + last_added + "'"
+                        if result_filter == "":
+                            updated_filter = last_added_filter
+                        else:
+                            updated_filter = result_filter + " + " + last_added_filter
+
+                        host_lookup = discover.query_hosts(filter=updated_filter, limit=DISCOVER_PAGE_SIZE, sort=sort)
+                    else:
+                        offset = len(hosts)
+                        host_lookup = discover.query_hosts(filter=result_filter, limit=DISCOVER_PAGE_SIZE, offset=offset, sort=sort)
                 else:
                     is_paged_result = False
+
+            if len(hosts) >= total_original:
+                # Need to remove potential duplicates
+                hosts = remove_duplicate_hosts(hosts)
+            
         except Exception as ex:
             raise DatasourceFailure(ex)
         return hosts
