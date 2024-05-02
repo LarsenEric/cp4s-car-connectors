@@ -1,9 +1,0 @@
-{
-	"ServiceResponse": {
-		"responseCode": "INVALID_CREDENTIALS",
-		"responseErrorDetails": {
-			"errorResolution": "Verify both 'user' and 'password' credentials.",
-			"errorMessage": "Authentication failed"
-		}
-	}
-}
