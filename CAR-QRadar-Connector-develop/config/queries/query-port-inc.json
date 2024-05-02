@@ -1,0 +1,29 @@
+{
+  "search_type": "SYNCH",
+  "query": {
+    "fields":
+    [
+        { "contextual_type": "VULNINSTANCE_IPADDRESS"},
+        { "contextual_type": "VULNINSTANCE_ASSET_ID"},
+        { "contextual_type": "VULNINSTANCE_ID"},
+        { "contextual_type": "VULNINSTANCE_PORT_SERVICE" },
+        { "contextual_type": "VULNINSTANCE_PORT_NUMBER" },
+        { "contextual_type": "VULNINSTANCE_PORT_DESCRIPTION"},
+        { "contextual_type": "VULNINSTANCE_PORT_ID"}
+    ],
+    "range": {"offset": 0, "limit": 10000},
+    "sorts": [{ "field": { "contextual_type": "VULNINSTANCE_ID" }, "direction": "DESC" }],
+    "filters":
+    [
+        {
+          "argument": { "contextual_type": "VULNINSTANCE_PORT_NUMBER" },
+          "operator": { "name": "IS_NOT_NULL", "data_type": "INTEGER" }
+        },
+        {
+          "argument":{"contextual_type":"VULNINSTANCE_PORT_DATE_UPDATED"},
+          "operator":{"name":"GREATER_THAN", "data_type":"DATESTAMP"},
+          "parameters":["%(date_timestamp)s"]
+        }
+    ]
+  }
+}

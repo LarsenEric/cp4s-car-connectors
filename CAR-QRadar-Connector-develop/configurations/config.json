@@ -1,0 +1,64 @@
+{
+  "connection": {
+    "schedule": {
+      "default": "*/15 * * * *",
+      "type": "cron",
+      "previous": [
+        "frequency",
+        "time"
+      ],
+      "options": [
+        "*/5 * * * *",
+        "*/10 * * * *",
+        "*/15 * * * *",
+        "*/30 * * * *",
+        "0 */1 * * *",
+        "0 */2 * * *",
+        "0 */4 * * *",
+        "0 */6 * * *",
+        "0 */12 * * *",
+        "mm HH * * *"
+      ]
+    },
+    "help": {
+      "default": "data-sources-car-qradar.html",
+      "type": "link"
+    },
+    "image": {
+      "type": "text",
+      "hidden": true,
+      "default": "{image_link}"
+    },
+    "type": {
+      "type": "connectorType",
+      "displayName": "IBM® QRadar and QRadar On Cloud",
+      "group": "qradar"
+    },
+    "host": {
+      "type": "text",
+      "regex": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_:/\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9_:/\\-]*[A-Za-z0-9])$"
+    },
+    "port": {
+      "type": "number",
+      "default": 443,
+      "min": 1,
+      "max": 65535
+    },
+    "uba": {
+      "default": false,
+      "type": "boolean"
+    },
+    "selfSignedCert": {
+      "type": "password",
+      "optional": true
+    }
+  },
+  "configuration": {
+    "auth": {
+      "type": "fields",
+      "sec": {
+        "type": "password"
+      }
+    }
+  }
+}

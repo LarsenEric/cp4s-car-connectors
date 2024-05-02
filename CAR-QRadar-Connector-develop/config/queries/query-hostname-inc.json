@@ -1,0 +1,25 @@
+{
+    "search_type": "SYNCH",
+    "query": {
+      "fields":
+      [
+          { "contextual_type": "ASSET_ID" },
+          { "contextual_type": "ASSET_HOSTNAME" },
+          { "contextual_type": "ASSET_HOSTNAME_ID" }
+      ],
+      "range": {"offset": 0, "limit": 10000},
+      "sorts": [{ "field": { "contextual_type": "ASSET_ID" }, "direction": "DESC" }],
+      "filters":
+        [
+            {
+              "argument": { "contextual_type": "ASSET_HOSTNAME" },
+              "operator": { "name": "IS_NOT_NULL", "data_type": "STRING" }
+            },
+            {
+              "argument":{"contextual_type":"ASSET_HOSTNAME_DATE_UPDATED"},
+              "operator":{"name":"GREATER_THAN", "data_type":"DATESTAMP"},
+              "parameters":["%(date_timestamp)s"]
+            }
+        ]
+    }
+  }

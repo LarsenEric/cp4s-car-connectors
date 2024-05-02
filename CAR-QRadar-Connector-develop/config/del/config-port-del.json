@@ -1,0 +1,9 @@
+{
+    "collection":"port",
+    "apis":[
+      {
+        "query_file":"query-port-del.json",
+        "handler":"delete_ports"
+      }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "collection":"user",
+    "apis":[
+      {
+        "query_file":"query-user.json",
+        "handler":"process_users"
+      }
+    ]
+}

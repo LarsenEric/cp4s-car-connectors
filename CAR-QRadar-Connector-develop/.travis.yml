@@ -1,0 +1,33 @@
+language: python
+
+jobs:
+  include:
+      - stage: Unit Tests
+        name: Unit Tests
+        python: 3.9
+        install:
+        - pip3 install -r tests/requirements.txt
+        script: 
+        - python3 -m unittest discover tests
+      - stage: Functional Tests
+        name: Functional Tests
+        python: 3.9
+        os:
+        - redhat
+        services:
+        - docker
+        env:
+        - QRADAR_HOST=9.46.254.152
+        before_install:
+        - echo -e "Host ${QRADAR_HOST}\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+        - scp root@${QRADAR_HOST}:/root/envVar.txt .
+        - source envVar.txt
+        - docker version
+        - sudo pip install docker-py
+        - scp root@${QRADAR_HOST}:/root/id_rsa_alex ~/.ssh/
+        - scp root@${QRADAR_HOST}:/root/known_hosts ~/.ssh/
+        install:
+        - pip3 install -r functionalTests/requirements.txt
+        - git clone -b fp-1.10.12.0 git@github.ibm.com:CAR/car.git
+        script:
+        - travis_wait 60 py.test functionalTests/test_qradar_car_connector.py -vv

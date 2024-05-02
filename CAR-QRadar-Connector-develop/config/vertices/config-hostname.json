@@ -1,0 +1,9 @@
+{
+    "collection":"hostname",
+    "apis":[
+      {
+        "query_file":"query-hostname.json",
+        "handler":"process_hostnames"
+      }
+    ]
+}

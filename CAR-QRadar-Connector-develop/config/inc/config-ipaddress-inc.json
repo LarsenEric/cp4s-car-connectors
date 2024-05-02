@@ -1,0 +1,9 @@
+{
+    "collection":"ipaddress",
+    "apis":[
+      {
+        "query_file":"query-ipaddress-inc.json",
+        "handler":"update_ip_addresses"
+      }
+    ]
+  }

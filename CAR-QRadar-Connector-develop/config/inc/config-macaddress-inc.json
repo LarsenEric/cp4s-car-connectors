@@ -1,0 +1,10 @@
+{
+    "collection":"macaddress",
+    "apis":[
+      {
+        "query_file":"query-macaddress-inc.json",
+        "handler":"update_mac_addresses"
+      }
+    ]
+  }
+  

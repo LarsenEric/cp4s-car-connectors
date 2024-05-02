@@ -1,0 +1,9 @@
+{
+  "collection":"macaddress",
+  "apis":[
+    {
+      "query_file":"query-macaddress.json",
+      "handler":"process_mac_addresses"
+    }
+  ]
+}

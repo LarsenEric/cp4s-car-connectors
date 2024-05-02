@@ -1,0 +1,9 @@
+{
+    "collection":"user",
+    "apis":[
+      {
+        "query_file":"query-user-del.json",
+        "handler":"delete_users"
+      }
+    ]
+}

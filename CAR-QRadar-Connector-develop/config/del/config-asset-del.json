@@ -1,0 +1,9 @@
+{
+    "collection":"asset",
+    "apis":[
+      {
+        "query_file":"query-asset-ids-del.json",
+        "handler":"delete_asset_ids"
+      }
+    ]
+}

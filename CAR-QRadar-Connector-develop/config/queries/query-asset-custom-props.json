@@ -1,0 +1,26 @@
+{
+    "search_type": "SYNCH",
+    "query": {
+      "fields":
+      [
+          { "contextual_type": "ASSET_ID" },
+          { "contextual_type": "ASSET_PROPERTY_TYPE_NAME" },
+          { "contextual_type": "ASSET_PROPERTY_VALUE" },
+          { "contextual_type": "ASSET_PROPERTY_TYPE_ID" }
+      ],
+      "filters":
+      [        
+          {
+            "argument": { "contextual_type": "ASSET_PROPERTY_TYPE_ID" },
+            "operator": { "name": "GREATER_THAN_OR_EQUALS", "data_type": "INTEGER" },
+            "parameters": [ "1000000000"]
+          },
+          {
+            "argument": { "contextual_type": "ASSET_PROPERTY_VALUE" },
+            "operator": { "name": "IS_NOT_NULL", "data_type": "STRING" }
+          }
+      ],
+      "range": {"offset": 0, "limit": 10000},
+      "sorts": [{ "field": { "contextual_type": "ASSET_ID" }, "direction": "ASC" }]  
+    }
+} 

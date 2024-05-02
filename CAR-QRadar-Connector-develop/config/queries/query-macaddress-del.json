@@ -1,0 +1,35 @@
+{
+    "search_type":"SYNCH",
+    "query":{
+        "filters":
+        [
+            {
+                "left_filter" : {
+                   "argument" : {"contextual_type" : "VULNASSET_TRACKING_TABLE_NAME"},
+                   "operator" : {"name" : "EQUALS","data_type" : "STRING"},
+                   "parameters" : ["ipaddress"]
+                },
+                "right_filter" : {
+                   "argument" : {"contextual_type" : "VULNASSET_TRACKING_TABLE_NAME"},
+                   "operator" : {"name" : "EQUALS","data_type" : "STRING"},
+                   "parameters" : ["interface"]
+                   
+                },
+                "operator" : {"connective" : "OR"}
+            },
+            {
+                "argument":{"contextual_type":"VULNASSET_TRACKING_ACTION_TIMESTAMP"},
+                "operator":{"name":"GREATER_THAN", "data_type":"DATESTAMP"},
+                "parameters":["%(date_timestamp)s"]
+              }
+        ],
+        "fields":
+        [
+            {"contextual_type":"VULNASSET_TRACKING_ACTION_TIMESTAMP"},
+            {"contextual_type":"VULNASSET_TRACKING_DELETED_ID"},
+            {"contextual_type":"VULNASSET_TRACKING_TABLE_NAME"}
+        ],
+        "range": {"offset": 0, "limit": 10000},
+        "sorts":[{"field":{"contextual_type":"VULNASSET_TRACKING_ACTION_TIMESTAMP"},"direction":"ASC"}]
+    }
+}

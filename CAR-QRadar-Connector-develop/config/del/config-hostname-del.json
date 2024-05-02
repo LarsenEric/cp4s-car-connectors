@@ -1,0 +1,9 @@
+{
+    "collection":"hostname",
+    "apis":[
+      {
+        "query_file":"query-hostname-del.json",
+        "handler":"delete_hostnames"
+      }
+    ]
+}

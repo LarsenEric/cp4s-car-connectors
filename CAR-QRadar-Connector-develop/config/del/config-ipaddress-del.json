@@ -1,0 +1,9 @@
+{
+    "collection":"ipaddress",
+    "apis":[
+      {
+        "query_file":"query-ipaddress-del.json",
+        "handler":"delete_ip_addresses"
+      }
+    ]
+  }

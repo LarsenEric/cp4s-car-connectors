@@ -1,0 +1,18 @@
+{
+    "search_type": "SYNCH",
+    "query": { 
+        "fields":
+        [
+            { "contextual_type": "ASSET_ID" }
+        ],
+        "range": {"offset": 0, "limit": 10000},
+        "sorts": [{ "field": { "contextual_type": "ASSET_ID" }, "direction": "ASC" }],
+        "filters" : [
+         {
+            "argument":{"contextual_type":"ASSET_ASSETPROPERTY_DATE_UPDATED"},
+            "operator":{"name":"GREATER_THAN", "data_type":"DATESTAMP"},
+            "parameters":["%(date_timestamp)s"]
+          }
+         ]
+    }
+}

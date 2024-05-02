@@ -1,0 +1,20 @@
+{
+  "search_type": "SYNCH",
+  "query": {
+    "fields":
+    [
+        { "contextual_type": "ASSET_ID" },
+        { "contextual_type": "ASSET_IPADDRESS" },
+        { "contextual_type": "ASSET_IPADDRESS_ID" }
+    ],
+    "range": {"offset": 0, "limit": 10000},
+    "sorts": [{ "field": { "contextual_type": "ASSET_ID" }, "direction": "DESC" }],
+    "filters":
+      [
+          {
+            "argument": { "contextual_type": "ASSET_IPADDRESS" },
+            "operator": { "name": "IS_NOT_NULL", "data_type": "IPADDRESS" }
+          }
+      ]
+  }
+}

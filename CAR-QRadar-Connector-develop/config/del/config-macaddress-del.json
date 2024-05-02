@@ -1,0 +1,9 @@
+{
+    "collection":"macaddress",
+    "apis":[
+      {
+        "query_file":"query-macaddress-del.json",
+        "handler":"delete_mac_addresses"
+      }
+    ]
+  }

@@ -1,0 +1,17 @@
+{
+    "collection":"asset",
+    "apis":[
+      {
+        "query_file":"query-asset-ids-inc.json",
+        "handler":"update_asset_ids"
+      },
+      {
+        "query_file":"query-asset-props-inc.json",
+        "handler":"process_asset_properties"
+      },
+      {
+        "query_file":"query-asset-custom-props-inc.json",
+        "handler":"process_asset_custom_properties"
+      }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "collection":"port",
+    "apis":[
+      {
+        "query_file":"query-port-inc.json",
+        "handler":"update_ports"
+      }
+    ]
+}

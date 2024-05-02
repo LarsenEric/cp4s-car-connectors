@@ -1,0 +1,31 @@
+{
+    "search_type": "SYNCH",
+    "query": {
+      "fields":
+      [
+          { "contextual_type": "ASSET_ID" },
+          { "contextual_type": "ASSET_USERNAME" },
+          { "contextual_type": "ASSET_USERNAME_GROUP" },
+          { "contextual_type": "ASSET_USERNAME_ID" }
+      ],
+      "range": {"offset": 0, "limit": 10000},
+      "sorts": [{ "field": { "contextual_type": "ASSET_ID" }, "direction": "DESC" }],
+      "filters":
+        [
+            {
+              "argument": { "contextual_type": "ASSET_USERNAME" },
+              "operator": { "name": "IS_NOT_NULL", "data_type": "STRING" }
+            },
+            {
+              "argument": { "contextual_type": "ASSET_ID" },
+              "operator": { "name": "IS_NOT_NULL", "data_type": "INTEGER" }
+            },
+            {
+              "argument":{"contextual_type":"ASSET_PHYSICALUSER_DATE_UPDATED"},
+              "operator":{"name":"GREATER_THAN", "data_type":"DATESTAMP"},
+              "parameters":["%(date_timestamp)s"]
+            }
+        ]
+    }
+  }
+  

@@ -1,0 +1,9 @@
+{
+  "collection":"ipaddress",
+  "apis":[
+    {
+      "query_file":"query-ipaddress.json",
+      "handler":"process_ip_addresses"
+    }
+  ]
+}

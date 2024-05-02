@@ -1,0 +1,9 @@
+{
+    "collection":"user",
+    "apis":[
+      {
+        "query_file":"query-user-inc.json",
+        "handler":"update_users"
+      }
+    ]
+}
