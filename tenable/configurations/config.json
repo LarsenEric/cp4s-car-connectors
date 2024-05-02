@@ -1,0 +1,19 @@
+{
+    "connection": {
+        "type": {
+            "type": "connectorType",
+            "displayName": "Tenable"
+        }
+    },
+    "configuration": {
+        "auth": {
+            "type": "fields",
+            "tio_access_key": {
+                "type": "password"
+            },
+            "tio_secret_key": {
+                "type": "password"
+            }
+        }
+    }
+}
