@@ -1,3 +1,4 @@
+
 import datetime
 
 from car_framework.context import context
@@ -52,9 +53,15 @@ def group_host_sensor_apps(applications):
             group_apps[agent_id].append(app)
     return group_apps
 
-def remove_duplicate_hosts(hosts):
+def remove_duplicates(items):
     """Remove any duplicate hosts from the array of hosts"""
-    return [i for n, i in enumerate(hosts) if i not in hosts[:n]]
+    context().logger.debug("Removing duplicates from list with length: %s", len(items))
+    unique_items = []
+    for item in items:
+        if item not in unique_items:
+            unique_items.append(item)
+    context().logger.debug("Returning %s unique items", len(unique_items))
+    return unique_items
 
 class DataHandler(BaseDataHandler):
 
