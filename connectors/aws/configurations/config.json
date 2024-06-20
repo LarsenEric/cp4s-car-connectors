@@ -22,10 +22,12 @@
                 "type": "password"
             },
             "aws_access_key_id": {
-                "type": "password"
+                "type": "password",
+                "optional": true
             },
             "aws_secret_access_key": {
-                "type": "password"
+                "type": "password",
+                "optional": true
             }
         }
     }
